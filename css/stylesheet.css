@@ -1,0 +1,16 @@
+body {
+    width: 60%;
+    margin: auto;
+    font-family: "Candara Light", sans-serif;
+    font-size: large;
+}
+
+#titular {
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
