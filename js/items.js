@@ -4,7 +4,7 @@ class Item {
         this.html_element = null;
     }
 
-    setId(id) {
+    setIdOrClass(id) {
         this.item_id = id;
         return this;
     }

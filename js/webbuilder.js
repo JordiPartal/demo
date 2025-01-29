@@ -1,11 +1,37 @@
-const item = new Item();
+let header;
+let section = [];
 const main = "#main";
-const section = ".section";
 
-addItemWithId( main, item.setId("titular").setElement("h1").build() );
-addTextIn( "#titular", "Esto es un título h1" );
-addItemWithClass( main, item.setId("section").setElement("div").build() );
-addItems( section, item.setElement("div").build(), 4 );
+init();
+
+async function init() {
+    await saveData();
+    addItemWithId(main, new Item().setIdOrClass(header.id).setElement("h1").build());
+    addTextIn("#titular", header.txt);
+    addItemWithClass(main, new Item().setIdOrClass("section").setElement("div").build());
+}
+
+async function saveData() {
+    let count = 0;
+    await getJsonData()
+        .then(json => {
+            header = new Element().setIdOrClass(json.header.id).setText(json.header.txt);
+            json.section.forEach(item => {
+                section[count] = new Element().setIdOrClass(item.id).setText(item.txt);
+                count += 1;
+            })
+        });
+}
+
+function getJsonData() {
+    return fetch("./data/data.json")
+        .then(response => response.json())
+        .then(json => new Data().setHeader(json.header).setSection(json.section).build())
+        .catch(error => {
+            alert(error);
+            return null;
+        });
+}
 
 function addTextIn(id, text) {
     const item = getItem(id);
@@ -13,8 +39,8 @@ function addTextIn(id, text) {
 }
 
 function addItems(parent, element, count) {
-    if(count > 1) {
-        for (let i = 0; i < count ; i++) {
+    if (count > 1) {
+        for (let i = 0; i < count; i++) {
             addItem(parent, element);
         }
     } else {
