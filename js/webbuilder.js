@@ -1,14 +1,14 @@
 const item = new Item();
-const main = '#main'
-const section = '.section';
+const main = "#main";
+const section = ".section";
 
-addItemWithId( main, item.setId('titular').setElement('h1').build() );
-addTextIn( 'titular', 'Esto es un título principal' );
-addItemWithClass( main, item.setId('section').setElement('div').build() );
-addItems( section, item.setElement('div').build() , 4 );
+addItemWithId( main, item.setId("titular").setElement("h1").build() );
+addTextIn( "#titular", "Esto es un título h1" );
+addItemWithClass( main, item.setId("section").setElement("div").build() );
+addItems( section, item.setElement("div").build(), 4 );
 
 function addTextIn(id, text) {
-    const item = document.getElementById(id);
+    const item = getItem(id);
     item.innerText = text;
 }
 
@@ -24,21 +24,21 @@ function addItems(parent, element, count) {
 
 function addItem(parent, element) {
     const main = getItem(parent);
-    const item = document.createElement(element.elemento);
+    const item = document.createElement(element.html_element);
     main.appendChild(item);
 }
 
 function addItemWithId(parent, element) {
     const main = getItem(parent);
-    const item = document.createElement(element.elemento)
-    item.setAttribute('id', element.identificador);
+    const item = document.createElement(element.html_element);
+    item.setAttribute('id', element.item_id);
     main.appendChild(item);
 }
 
 function addItemWithClass(parent, element) {
     const main = getItem(parent);
-    const item = document.createElement(element.elemento);
-    item.setAttribute('class', element.identificador)
+    const item = document.createElement(element.html_element);
+    item.setAttribute('class', element.item_id)
     main.appendChild(item);
 }
 

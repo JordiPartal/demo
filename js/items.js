@@ -17,7 +17,7 @@ class Item {
     build() {
         return {
             item_id: this.item_id,
-            element: this.html_element
+            html_element: this.html_element
         }
     }
 }
