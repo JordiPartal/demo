@@ -5,13 +5,13 @@ const main = "#main";
 init();
 
 async function init() {
-    await saveData();
+    await saveDataOnVariables();
     addItemWithId(main, new Item().setIdOrClass(header.id).setElement("h1").build());
     addTextIn("#titular", header.txt);
     addItemWithClass(main, new Item().setIdOrClass("section").setElement("div").build());
 }
 
-async function saveData() {
+async function saveDataOnVariables() {
     let count = 0;
     await getJsonData()
         .then(json => {
