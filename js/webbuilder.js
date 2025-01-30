@@ -9,6 +9,7 @@ async function init() {
     addItemWithId(main, new Item().setIdOrClass(header.id).setElement("h1").build());
     addTextIn("#titular", header.txt);
     addItemWithClass(main, new Item().setIdOrClass("section").setElement("div").build());
+    addItems(".section", "div");
 }
 
 async function saveDataOnVariables() {
@@ -38,20 +39,15 @@ function addTextIn(id, text) {
     item.innerText = text;
 }
 
-function addItems(parent, element, count) {
-    if (count > 1) {
-        for (let i = 0; i < count; i++) {
-            addItem(parent, element);
-        }
-    } else {
-        addItem(parent, element);
-    }
-}
-
-function addItem(parent, element) {
+function addItems(parent, htmlElement) {
     const main = getItem(parent);
-    const item = document.createElement(element.html_element);
-    main.appendChild(item);
+    let count = 0;
+    section.forEach(item => {
+        let element = document.createElement(htmlElement);
+        element.setAttribute("id", item.id);
+        element.innerText = item.txt;
+        main.appendChild(element);
+    })
 }
 
 function addItemWithId(parent, element) {

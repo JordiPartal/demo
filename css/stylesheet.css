@@ -1,5 +1,5 @@
 body {
-    width: 60%;
+    width: 80%;
     margin: auto;
     font-family: "Candara Light", sans-serif;
     font-size: large;
@@ -11,6 +11,13 @@ body {
 }
 
 .section {
+    padding: 24px 0 24px 0;
     display: grid;
     grid-template-columns: repeat(2, 50%);
+    grid-gap: 16px;
+    text-align: justify;
+    div {
+        padding: 8px;
+        hyphens: auto;
+    }
 }
