@@ -20,5 +20,19 @@
       "id": "div1004",
       "txt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lectus dolor, fringilla quis facilisis eget, sagittis ac turpis. Aenean ut ipsum non est varius pretium. Suspendisse potenti. Praesent nec lectus a erat rhoncus suscipit nec nec elit. Vivamus blandit nec mauris in tristique. Curabitur pharetra malesuada erat a maximus. Sed vitae sapien maximus, consectetur mauris sit amet, facilisis elit. Praesent bibendum magna nunc, id aliquam magna semper vel. Vestibulum auctor rutrum placerat. Proin sagittis orci tortor, et tempor quam euismod vel. Suspendisse orci justo, elementum eu efficitur nec, fringilla id tortor. Donec convallis ut lorem ut mollis."
     }
+  ],
+  "color": [
+    {
+      "id": "color1101"
+    },
+    {
+      "id": "color1102"
+    },
+    {
+      "id": "color1103"
+    },
+    {
+      "id": "color1104"
+    }
   ]
 }

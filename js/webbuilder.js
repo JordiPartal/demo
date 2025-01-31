@@ -1,6 +1,8 @@
 let header;
-let section = [];
+
 const main = "#main";
+let color = [];
+let section = [];
 
 init();
 
@@ -9,29 +11,41 @@ async function init() {
     addItemWithId(main, new Item().setIdOrClass(header.id).setElement("h1").build());
     addTextIn("#titular", header.txt);
     addItemWithClass(main, new Item().setIdOrClass("section").setElement("div").build());
-    addItems(".section", "div");
+    addItemWithId(".section", new Item().setIdOrClass("color").setElement("div").build());
+    addItems(".section", section);
+    addItems("#color", color);
 }
 
 async function saveDataOnVariables() {
     let count = 0;
     await getJsonData()
         .then(json => {
-            header = new Element().setIdOrClass(json.header.id).setText(json.header.txt);
-            json.section.forEach(item => {
-                section[count] = new Element().setIdOrClass(item.id).setText(item.txt);
-                count += 1;
-            })
+            header = new Element().setIdOrClass(json.header.id).setText(json.header.txt).build();
+            section = putDataIn(json.section);
+            color = putDataIn(json.color);
         });
 }
 
 function getJsonData() {
     return fetch("./data/data.json")
         .then(response => response.json())
-        .then(json => new Data().setHeader(json.header).setSection(json.section).build())
+        .then(json => new Data().setHeader(json.header).setSection(json.section).setColor(json.color).build())
         .catch(error => {
             alert(error);
             return null;
         });
+}
+
+function putDataIn(item) {
+    let count = 0;
+    let collection = [];
+
+    item.forEach(property => {
+        collection[count] = new Element().setIdOrClass(property.id).setText(property.txt).build();
+        count += 1;
+    })
+
+    return collection;
 }
 
 function addTextIn(id, text) {
@@ -39,15 +53,11 @@ function addTextIn(id, text) {
     item.innerText = text;
 }
 
-function addItems(parent, htmlElement) {
-    const main = getItem(parent);
-    let count = 0;
-    section.forEach(item => {
-        let element = document.createElement(htmlElement);
-        element.setAttribute("id", item.id);
-        element.innerText = item.txt;
-        main.appendChild(element);
-    })
+function addItems(parent, collection) {
+    for (let count = 0; count < collection.length; count++) {
+        addItemWithId(parent, collection[count]);
+        addTextIn(collection[count].id, collection[count].txt);
+    }
 }
 
 function addItemWithId(parent, element) {
