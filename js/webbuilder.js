@@ -1,11 +1,12 @@
-let data;
+let data, bkgColor;
+
+let main = "main";
+let section = "section";
+let color = "color";
 
 init();
 
 async function init() {
-    let main = "main";
-    let section = "section";
-    let color = "color";
     try {
         await getJsonData();
         addItemWithId(isId(main), data.header);
@@ -33,11 +34,13 @@ function getJsonData() {
 function addItems(parent, collection) {
     try {
         for (let count = 0; count < collection.length; count++) {
-            if (collection[count].txt !== null) {
+            if (collection[count].txt !== undefined) {
                 addItemWithId(parent, collection[count]);
                 addTextIn(isId(collection[count].idOrClass), collection[count].txt);
             } else {
-                addItemWithId(parent, collection[count]);
+                if(collection[count].color !== null) {
+                    addItemWithIdAndColor(parent, collection[count])
+                }
             }
         }
     } catch (error) {
@@ -54,7 +57,20 @@ function addItemWithId(parent, element) {
     try {
         const main = getItem(parent);
         const item = document.createElement(element.element);
-        item.setAttribute('id', element.idOrClass);
+        item.setAttribute("id", element.idOrClass);
+        main.appendChild(item);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+function addItemWithIdAndColor(parent, element) {
+    try {
+        const main = getItem(parent);
+        const item = document.createElement(element.element);
+        item.style.backgroundColor = element.color;
+        item.addEventListener("click", () => { getBackgroundColor(item); onClickGuide(false); });
+        item.setAttribute("id", element.idOrClass);
         main.appendChild(item);
     } catch (error) {
         console.log(error.message);
@@ -65,7 +81,7 @@ function addDivItemWithId(parent, elementId) {
     try {
         const main = getItem(parent);
         const item = document.createElement("div");
-        item.setAttribute('id', elementId);
+        item.setAttribute("id", elementId);
         main.appendChild(item);
     } catch (error) {
         console.log(error.message);

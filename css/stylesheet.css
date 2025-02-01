@@ -1,5 +1,5 @@
 body {
-    width: 60%;
+    width: 60vw;
     margin: 32px auto;
     font-family: "Candara Light", sans-serif;
     font-size: large;
@@ -11,24 +11,45 @@ body {
 }
 
 #section {
+    display: grid;
+    grid-template-columns: repeat(2, calc(50% - 8px));
+    grid-column-gap: 16px;
+    grid-row-gap: 32px;
+    text-align: justify;
+    hyphens: auto;
+
     div {
         padding: 24px;
-        margin: 32px 0;
         box-shadow: lightgray 5px 5px 10px;
         line-height: 1.5em;
+        border: lightgray 1px solid;
+        border-radius: 20px;
     }
 
     #color {
-        margin: 0;
+        padding: 16px;
         display: grid;
         grid-template-columns: repeat(4, 25%);
+        grid-column: 1 / 2 span;
         box-shadow: none;
         border: lightgray 1px solid;
+        border-radius: 0;
 
         div {
+            cursor: pointer;
             width: 50%;
+            height: 6vh;
             margin: auto;
             box-shadow: none;
+            border: none;
+            border-radius: 0;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        div:hover {
+            width: calc(50% - 8px);
+            height: 5.5vh;
         }
     }
 }
