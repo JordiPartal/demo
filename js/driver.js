@@ -2,46 +2,50 @@ const driver = window.driver.js.driver;
 const side = "left";
 const align = "start";
 
-function onClickGuide(allowCloseDriverJs) {
+function onClickGuide(allowCloseDriverJs, idOrClass) {
+    const disableInteraction = true;
     const stepsWithNoStyle = driver({
-        showProgress: true,
+        showProgress: false,
         allowClose: allowCloseDriverJs,
+        popoverClass: idOrClass,
         steps: [
             addMainItemId(data.header),
-            selectMainDomElementOfSection(section),
+            selectMainDomElementOfSection(section, disableInteraction),
             addMainItemId(data.section[0]),
             addMainItemId(data.section[1]),
             addMainItemId(data.section[2]),
             addMainItemId(data.section[3]),
-            selectMainDomElementOfColor(color)
+            selectMainDomElementOfColor(color, disableInteraction)
         ]
     });
     stepsWithNoStyle.drive();
 }
 
-function selectMainDomElementOfSection(DOMElement) {
+function selectMainDomElementOfSection(DOMElement, disableInteraction) {
     const titleTxt = "Sección de";
     return {
         element: isId(DOMElement),
         popover: {
             title: writeATitle(titleTxt, DOMElement),
-            description: "Aquí está ubicada la sección principal del apartado de '#section'",
+            description: "Aquí está ubicada la sección principal del apartado de '#section'.",
             side: side,
             align: align
-        }
+        },
+        disableActiveInteraction: disableInteraction,
     };
 }
 
-function selectMainDomElementOfColor(DOMElement) {
+function selectMainDomElementOfColor(DOMElement, disableInteraction) {
     const titleTxt = "Sección de";
     return {
         element: isId(DOMElement),
         popover: {
             title: writeATitle(titleTxt, DOMElement),
-            description: "Aquí se puede seleccionar el color de los 'popover'",
+            description: "Aquí se puede seleccionar el color de los botone del 'popover'.",
             side: side,
             align: align
-        }
+        },
+        disableActiveInteraction: disableInteraction,
     };
 }
 
@@ -57,10 +61,12 @@ function addMainItemId(DOMElement) {
     };
 }
 
-function writeATitle(txt, DOMElement) {
-    return txt.concat(" ", isId(DOMElement))
+function configPopover(DOMElement) {
+    const item = getItem(DOMElement);
+    item.style.backgroundColor = bkgColor;
+    item.style.color = font;
 }
 
-function getBackgroundColor(DOMElement) {
-     bkgColor = window.getComputedStyle(DOMElement).backgroundColor;
+function writeATitle(txt, DOMElement) {
+    return txt.concat(" ", isId(DOMElement))
 }

@@ -1,4 +1,4 @@
-let data, bkgColor;
+let data, bkgColor, font;
 
 let main = "main";
 let section = "section";
@@ -69,7 +69,11 @@ function addItemWithIdAndColor(parent, element) {
         const main = getItem(parent);
         const item = document.createElement(element.element);
         item.style.backgroundColor = element.color;
-        item.addEventListener("click", () => { getBackgroundColor(item); onClickGuide(false); });
+        item.addEventListener("click", () => {
+            getBackgroundColorAnTxt(item);
+            onClickGuide(true, "custom");
+            configPopover(isClass("custom"))
+        });
         item.setAttribute("id", element.idOrClass);
         main.appendChild(item);
     } catch (error) {
@@ -88,8 +92,17 @@ function addDivItemWithId(parent, elementId) {
     }
 }
 
+function getBackgroundColorAnTxt(DOMElement) {
+    bkgColor = window.getComputedStyle(DOMElement).backgroundColor;
+    font = "white";
+}
+
 function isId(element) {
     return "#".concat("", element);
+}
+
+function isClass(element) {
+    return ".".concat("", element);
 }
 
 function getItem(selector) {
