@@ -108,6 +108,7 @@ body
 div.driver-popover.custom
 {
     font-family: "Candara Light", sans-serif;
+    background-color: #FFFFFF;
 
     .driver-popover-navigation-btns
     {
@@ -130,7 +131,8 @@ div.driver-popover.custom
         color: white;
     }
 
-    .driver-popover-prev-btn:hover {
+    .driver-popover-prev-btn:hover
+    {
         background-color: black;
         color: white;
     }
@@ -151,6 +153,4 @@ div.driver-popover.custom
         line-height: 1.5em;
         font-weight: bold;
     }
-
-
 }

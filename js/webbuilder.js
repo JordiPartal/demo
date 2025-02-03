@@ -1,4 +1,4 @@
-let data, bkgColor, font;
+let data;
 
 let main = "main";
 let section = "section";
@@ -72,7 +72,6 @@ function addItemWithIdAndColor(parent, element) {
         item.addEventListener("click", () => {
             getBackgroundColorAnTxt(item);
             onClickGuide(true, "custom");
-            configPopover(isClass("custom"))
         });
         item.setAttribute("id", element.idOrClass);
         main.appendChild(item);
