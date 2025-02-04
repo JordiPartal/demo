@@ -107,9 +107,9 @@ body
 
 div.driver-popover.custom
 {
-    --set-border-color: white;
+    --set-background-color: white;
     font-family: "Candara Light", sans-serif;
-    background-color: var(--set-border-color);
+    background-color: var(--set-background-color);
 
     .driver-popover-navigation-btns
     {
@@ -156,6 +156,6 @@ div.driver-popover.custom
     }
 
     .driver-popover-arrow-side-left.driver-popover-arrow {
-        border-left-color: var(--set-border-color);
+        border-left-color: var(--set-background-color);
     }
 }

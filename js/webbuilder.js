@@ -96,7 +96,7 @@ function getBackgroundColor(DOMElement) {
     let css = document.styleSheets[0];
     for (let rule of css.cssRules) {
         if (rule.selectorText === "div.driver-popover.custom") {
-            rule.style.setProperty("--set-border-color", item.style.backgroundColor);
+            rule.style.setProperty("--set-background-color", item.style.backgroundColor);
             rule.style.color = "white";
         }
     }
