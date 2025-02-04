@@ -70,7 +70,7 @@ function addItemWithIdAndColor(parent, element) {
         const item = document.createElement(element.element);
         item.style.backgroundColor = element.color;
         item.addEventListener("click", () => {
-            getBackgroundColorAnTxt(item);
+            getBackgroundColor(isId(element.idOrClass));
             onClickGuide(true, "custom");
         });
         item.setAttribute("id", element.idOrClass);
@@ -91,9 +91,15 @@ function addDivItemWithId(parent, elementId) {
     }
 }
 
-function getBackgroundColorAnTxt(DOMElement) {
-    bkgColor = window.getComputedStyle(DOMElement).backgroundColor;
-    font = "white";
+function getBackgroundColor(DOMElement) {
+    const item = getItem(DOMElement);
+    let css = document.styleSheets[0];
+    for (let rule of css.cssRules) {
+        if (rule.selectorText === "div.driver-popover.custom") {
+            rule.style.setProperty("--set-border-color", item.style.backgroundColor);
+            rule.style.color = "white";
+        }
+    }
 }
 
 function isId(element) {
