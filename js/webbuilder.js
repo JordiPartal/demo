@@ -71,7 +71,7 @@ function addItemWithIdAndColor(parent, element) {
         item.style.backgroundColor = element.color;
         item.addEventListener("click", () => {
             getBackgroundColor(isId(element.idOrClass));
-            onClickGuide(true, "custom");
+            onClickGuideMainPage(true, "custom");
         });
         item.setAttribute("id", element.idOrClass);
         main.appendChild(item);
