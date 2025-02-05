@@ -105,6 +105,29 @@ body
     }
 }
 
+#form {
+    padding: 8px;
+    width: 40vw;
+    margin: auto;
+    box-shadow: lightgray 5px 5px 10px;
+    border: 1px lightgray solid;
+    display: grid;
+    grid-template-columns: 10vw 30vw;
+
+    input {
+        margin: 4px 0 4px 0;
+        width: calc(30vw - 8px);
+        font-size: large;
+        font-family: "Candara Light", sans-serif;
+    }
+
+    #form-header {
+        grid-column: 1 / 2 span;
+        text-align: center;
+        margin: 8px 8px 16px 8px;
+    }
+}
+
 div.driver-popover.custom
 {
     --set-background-color: white;
