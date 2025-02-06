@@ -4,9 +4,9 @@ let main = "main";
 let section = "section";
 let color = "color";
 
-init();
+initIndex();
 
-async function init() {
+async function initIndex() {
     try {
         await getJsonData();
         addItemWithId(isId(main), data.header);
@@ -26,7 +26,7 @@ function getJsonData() {
         .then(json => {
             data = new DOMItems().setHeader(json.header).setSection(json.section).setColor(json.color).build();
         })
-        .catch(error => {
+        .catch(error =>{
             console.log(error.message);
         });
 }
@@ -71,7 +71,7 @@ function addItemWithIdAndColor(parent, element) {
         item.style.backgroundColor = element.color;
         item.addEventListener("click", () => {
             getBackgroundColor(isId(element.idOrClass));
-            onClickGuideMainPage(true, "custom");
+            onClickGuideIndex(true, "custom");
         });
         item.setAttribute("id", element.idOrClass);
         main.appendChild(item);
@@ -100,6 +100,26 @@ function getBackgroundColor(DOMElement) {
             rule.style.color = "white";
         }
     }
+}
+
+function addMenuButton(imageDir, toPage, txt) {
+    const main = getItem(isId("main"));
+    const menu = document.createElement("div")
+    const image = document.createElement("img");
+    const hyperlink = document.createElement("a");
+    hyperlink.innerText = txt;
+
+    menu.setAttribute("id", "menu");
+    image.setAttribute("src", "img/".concat(imageDir).concat(".png"));
+    hyperlink.setAttribute("id", "menu-txt");
+    hyperlink.setAttribute("href", "./".concat(toPage).concat(".html"));
+    main.appendChild(menu);
+    menu.appendChild(image);
+    menu.appendChild(hyperlink);
+}
+
+function goToIndex() {
+    location.href = "index.html";
 }
 
 function isId(element) {

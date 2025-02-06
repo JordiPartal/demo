@@ -5,7 +5,7 @@ const side = "left";
 const align = "start";
 font = "white";
 
-function onClickGuideMainPage(allowCloseDriverJs, idOrClass) {
+function onClickGuideIndex(allowCloseDriverJs, idOrClass) {
     const mainPageGuide = new driver({
         showProgress: false,
         prevBtnText: "Anterior",
@@ -60,10 +60,11 @@ function selectMainDomElementOfColor(DOMElement) {
 }
 
 function addMainItemId(DOMElement) {
+    const titleTxt = "Ítem de";
     return {
         element: isId(DOMElement.idOrClass),
         popover: {
-            title: DOMElement.driver.title,
+            title: writeATitle(titleTxt, DOMElement.idOrClass),
             description: DOMElement.driver.description,
             side: side,
             align: align

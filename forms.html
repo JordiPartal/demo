@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
     <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
 </head>
-<body onload="onFocusElementFormPage()">
+<body onload="onFocusElementFormPage();" id="main">
+    <div id="menu">
+        <img src="img/main.png">
+        <a id="menu-txt" href="./index.html">Ir a Inicio</a>
+    </div>
     <div id="form">
         <div id="form-header">
             <h1>Estate a la última!</h1>
@@ -44,7 +48,7 @@
                     Estoy de acuerdo en recibir la newsletter y ofertas promocionales.
                 </p>
             </div>
-            <button>Suscribirme YA!</button>
+            <button onclick="goToIndex()">Suscribirme YA!</button>
         </div>
     </div>
     <script src="js/webbuilder.js"></script>
