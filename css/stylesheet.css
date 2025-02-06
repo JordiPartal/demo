@@ -13,6 +13,30 @@ body
     font-variant: small-caps;
 }
 
+#subscription {
+    cursor: pointer;
+    z-index: 1;
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    top: 32px;
+    right: 64px;
+    background-color: white;
+    box-shadow: lightgray 5px 5px 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+#subscription:hover {
+    width: 128px;
+    img { width: 32px }
+}
+
 #section
 {
     display: grid;
