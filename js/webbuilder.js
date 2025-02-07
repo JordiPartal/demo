@@ -1,5 +1,6 @@
 let data;
 
+let id = "id";
 let main = "main";
 let section = "section";
 let color = "color";
@@ -57,7 +58,7 @@ function addItemWithId(parent, element) {
     try {
         const main = getItem(parent);
         const item = document.createElement(element.element);
-        item.setAttribute("id", element.idOrClass);
+        item.setAttribute(id, element.idOrClass);
         main.appendChild(item);
     } catch (error) {
         console.log(error.message);
@@ -73,7 +74,7 @@ function addItemWithIdAndColor(parent, element) {
             getBackgroundColor(isId(element.idOrClass));
             onClickGuideIndex(true, "custom");
         });
-        item.setAttribute("id", element.idOrClass);
+        item.setAttribute(id, element.idOrClass);
         main.appendChild(item);
     } catch (error) {
         console.log(error.message);
@@ -84,7 +85,7 @@ function addDivItemWithId(parent, elementId) {
     try {
         const main = getItem(parent);
         const item = document.createElement("div");
-        item.setAttribute("id", elementId);
+        item.setAttribute(id, elementId);
         main.appendChild(item);
     } catch (error) {
         console.log(error.message);
@@ -100,22 +101,6 @@ function getBackgroundColor(DOMElement) {
             rule.style.color = "white";
         }
     }
-}
-
-function addMenuButton(imageDir, toPage, txt) {
-    const main = getItem(isId("main"));
-    const menu = document.createElement("div")
-    const image = document.createElement("img");
-    const hyperlink = document.createElement("a");
-    hyperlink.innerText = txt;
-
-    menu.setAttribute("id", "menu");
-    image.setAttribute("src", "img/".concat(imageDir).concat(".png"));
-    hyperlink.setAttribute("id", "menu-txt");
-    hyperlink.setAttribute("href", "./".concat(toPage).concat(".html"));
-    main.appendChild(menu);
-    menu.appendChild(image);
-    menu.appendChild(hyperlink);
 }
 
 function goToIndex() {

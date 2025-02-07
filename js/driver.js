@@ -1,5 +1,5 @@
 const driver = window.driver.js.driver;
-let bkgColor, font;
+let font;
 
 const side = "left";
 const align = "start";
