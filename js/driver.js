@@ -1,11 +1,18 @@
 const driver = window.driver.js.driver;
-let bkgColor, font;
+let font;
 
 const side = "left";
 const align = "start";
 font = "white";
 
+/**
+ * Start a driver.js 'tutorial'
+ * @param allowCloseDriverJs
+ * @param idOrClass
+ */
 function onClickGuideIndex(allowCloseDriverJs, idOrClass) {
+    const main = "Sección";
+    const child = "Ítem";
     const mainPageGuide = new driver({
         showProgress: false,
         prevBtnText: "Anterior",
@@ -14,18 +21,21 @@ function onClickGuideIndex(allowCloseDriverJs, idOrClass) {
         allowClose: allowCloseDriverJs,
         popoverClass: idOrClass,
         steps: [
-            addMainItemId(data.header),
-            selectMainDomElementOfSection(section),
-            addMainItemId(data.section[0]),
-            addMainItemId(data.section[1]),
-            addMainItemId(data.section[2]),
-            addMainItemId(data.section[3]),
-            selectMainDomElementOfColor(color)
+            popoverChild(child, data.header),
+            popoverParent(main, section),
+            popoverChild(child, data.section[0]),
+            popoverChild(child, data.section[1]),
+            popoverChild(child, data.section[2]),
+            popoverChild(child, data.section[3]),
+            popoverParent(main, color)
         ],
     });
     mainPageGuide.drive();
 }
 
+/**
+ * Create a 'highlight' to specific DOMElements on a website
+ */
 function onFocusElementFormPage() {
     const idOrClass = "custom";
     addFocusOn(idOrClass, getItem(isId("mail")), "Correo");
@@ -33,8 +43,13 @@ function onFocusElementFormPage() {
     addFocusOn(idOrClass, getItem(isId("second-name")), "2o apellido");
 }
 
-function selectMainDomElementOfSection(DOMElement) {
-    const titleTxt = "Sección de";
+/**
+ * Add a popover to a parent element
+ * @param titleTxt
+ * @param DOMElement
+ * @returns {{element: string, popover: {title, description: string, side: string, align: string}}}
+ */
+function popoverParent(titleTxt, DOMElement) {
     return {
         element: isId(DOMElement),
         popover: {
@@ -46,21 +61,13 @@ function selectMainDomElementOfSection(DOMElement) {
     };
 }
 
-function selectMainDomElementOfColor(DOMElement) {
-    const titleTxt = "Sección de";
-    return {
-        element: isId(DOMElement),
-        popover: {
-            title: writeATitle(titleTxt, DOMElement),
-            description: "Aquí se puede seleccionar el color de los botone del 'popover'.",
-            side: side,
-            align: align
-        }
-    };
-}
-
-function addMainItemId(DOMElement) {
-    const titleTxt = "Ítem de";
+/**
+ * Add a popover to a child of parent element
+ * @param titleTxt
+ * @param DOMElement
+ * @returns {{element: string, popover: {title, description: (string|AllowSharedBufferSource|string|*), side: string, align: string}}}
+ */
+function popoverChild(titleTxt, DOMElement) {
     return {
         element: isId(DOMElement.idOrClass),
         popover: {
@@ -72,6 +79,12 @@ function addMainItemId(DOMElement) {
     };
 }
 
+/**
+ * Creat an element 'highlight'
+ * @param idOrClass
+ * @param DOMElement
+ * @param title
+ */
 function addFocusOn(idOrClass, DOMElement, title) {
     const driverJsFocus = new driver({
         popoverClass: idOrClass
@@ -91,10 +104,21 @@ function addFocusOn(idOrClass, DOMElement, title) {
     })
 }
 
+/**
+ * Write an element title
+ * @param txt
+ * @param DOMElement
+ * @returns {*}
+ */
 function writeATitle(txt, DOMElement) {
     return txt.concat(" ", isId(DOMElement))
 }
 
+/**
+ * Write an element description
+ * @param title
+ * @returns {string}
+ */
 function writeADescription(title) {
     return "".concat("Escriba su ", title);
 }
